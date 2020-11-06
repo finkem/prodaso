@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 import prodaso.test2.model.Machine
 
 @Service
-class MachineService {
+class MachineDataProvider {
 
     @Autowired
     lateinit var machineRepository : IMachineRepository
@@ -16,15 +16,9 @@ class MachineService {
         return machines
     }
 
-    fun getById(id: Int): Machine {
-        return machineRepository.findById(id).get()
-    }
+    fun getById(id: Int): Machine = machineRepository.findById(id).get()
 
-    fun addOrUpdate(machine: Machine) {
-        machineRepository.save(machine)
-    }
+    fun addOrUpdate(machine: Machine) = machineRepository.save(machine)
 
-    fun removeById(id: Int) {
-        machineRepository.deleteById(id)
-    }
+    fun removeById(id: Int) = machineRepository.deleteById(id)
 }
