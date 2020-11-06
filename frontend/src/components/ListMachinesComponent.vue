@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" align="center">
     <h3>All machines</h3>
+    <div v-if="message" class="alert alert-success">
+      {{message}}
+    </div>
     <div class="container">
       <table class="table">
         <thead>
@@ -15,6 +18,14 @@
             <td>{{machine.id}}</td>
             <td>{{machine.name}}</td>
             <td>{{machine.state}}</td>
+            <td>
+              <button
+                class="btn btn-warning"
+                v-on:click="deleteMachineClicked(machine.id)"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -38,6 +49,13 @@ export default {
             .then(response => {
                 this.machines = response.data;
             })
+        },
+        deleteMachineClicked(id) {
+            // eslint-disable-next-line no-unused-vars
+            MachineDataService.deleteMachine(id).then(response => {
+                this.message = `Delete of machine ${id} succeeded`;
+                this.refreshMachines();
+          });
         }
     },
     created() {
@@ -47,5 +65,4 @@ export default {
 </script>
 
 <style>
-
 </style>

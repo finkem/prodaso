@@ -1,4 +1,4 @@
-# neues-projekt
+# test2-frontend
 
 ## Project setup
 ```
