@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository
 import prodaso.test2.model.Machine
 
 @Repository
-interface MachineRepository : CrudRepository<Machine, Long>{
-}
+interface IMachineRepository : CrudRepository<Machine, Int> {}
