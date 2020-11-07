@@ -10,6 +10,9 @@ class MachineDataService {
     deleteMachine(id) {
         return axios.delete(`${PRODASO_API_URL}/machines/${id}`);
     }
+    retrieveMachine(id) {
+        return axios.get(`${PRODASO_API_URL}/machines/${id}`);
+    }
 }
 
 export default new MachineDataService();

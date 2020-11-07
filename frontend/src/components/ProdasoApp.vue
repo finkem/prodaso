@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div align="center">
         <h1>PRODASO Lite</h1>
-        <ListMachinesComponent></ListMachinesComponent>
+        <ListMachinesComponent/>
     </div>
 </template>
 

@@ -8,27 +8,35 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>State</th>
           </tr>
         </thead>
         <tbody>
          <tr v-for="machine in machines" v-bind:key="machine.id">
-            <td>{{machine.id}}</td>
             <td>{{machine.name}}</td>
             <td>{{machine.state}}</td>
             <td>
-              <button
-                class="btn btn-warning"
-                v-on:click="deleteMachineClicked(machine.id)"
-              >
+              <button class="btn btn-success"
+                      v-on:click="updateMachineClicked(machine.id)">
+                Update
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-warning"
+                      v-on:click="deleteMachineClicked(machine.id)">
                 Delete
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="row">
+        <button class="btn btn-success" 
+                v-on:click="addMachineClicked()">
+                Add
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,12 +58,18 @@ export default {
                 this.machines = response.data;
             })
         },
+        updateMachineClicked(id) {
+            this.$router.push(`/machines/${id}`);
+        },
         deleteMachineClicked(id) {
             // eslint-disable-next-line no-unused-vars
             MachineDataService.deleteMachine(id).then(response => {
                 this.message = `Delete of machine ${id} succeeded`;
                 this.refreshMachines();
           });
+        },
+        addMachineClicked() {
+          this.$router.push(`/machines/-1`);
         }
     },
     created() {

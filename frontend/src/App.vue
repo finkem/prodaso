@@ -1,17 +1,12 @@
 <template>
-  <div id="container">
-    <ProdasoApp/>
+  <div class="container">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import ProdasoApp from './components/ProdasoApp.vue'
-
 export default {
-  name: 'Prodaso',
-  components: {
-    ProdasoApp
-  }
+  name: 'app'
 }
 </script>
 
