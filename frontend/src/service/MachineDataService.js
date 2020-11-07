@@ -13,6 +13,12 @@ class MachineDataService {
     retrieveMachine(id) {
         return axios.get(`${PRODASO_API_URL}/machines/${id}`);
     }
+    updateMachine(id, machine) {
+        return axios.put(`${PRODASO_API_URL}/machines/${id}`, machine);
+    }
+    addMachine(machine) {
+        return axios.post(`${PRODASO_API_URL}/machines`, machine);
+    }
 }
 
 export default new MachineDataService();

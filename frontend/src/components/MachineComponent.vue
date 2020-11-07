@@ -4,11 +4,15 @@
     <div class="container">
       <form @submit="validateAndSubmit">
         <div v-if="errors.length">
-            <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errors"></div>
+            <div 
+              class="alert alert-warning" 
+              v-bind:key="index" 
+              v-for="(error, index) in errors">
+            </div>
         </div>
         <fieldset class="form-group">
           <label>Name</label>
-          <input type="text" class="form-control" v-model="name" disabled>
+          <input type="text" class="form-control" v-model="name">
         </fieldset>
         <fieldset class="form-group">
           <label>State</label>
@@ -48,6 +52,26 @@ export default {
             this.errors = [];
             if(this.state != "STANDBY" || this.state != "PRODUCTION") {
                 this.errors.push("Enter valid values");
+            }
+
+            if(this.errors.length === 0) {
+                if (this.id === -1) {
+                    MachineDataService.addMachine( {
+                      name: this.name, 
+                      state: this.state
+                    })
+                    .then(() => {
+                        this.$router.push('/machines');
+                    });
+                } else {
+                    MachineDataService.updateMachine(this.id, {
+                        name: this.name,
+                        state: this.state
+                    })
+                    .then(() => {
+                        this.$router.push('/machines');
+                    });
+                }
             }
         }
   },

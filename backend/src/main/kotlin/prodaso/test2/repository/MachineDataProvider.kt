@@ -18,7 +18,7 @@ class MachineDataProvider {
 
     fun getById(id: Int): Machine = machineRepository.findById(id).get()
 
-    fun addOrUpdate(machine: Machine) = machineRepository.save(machine)
+    fun addOrUpdate(machine: Machine): Machine = machineRepository.save(machine)
 
     fun removeById(id: Int) = machineRepository.deleteById(id)
 }
